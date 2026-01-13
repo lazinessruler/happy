@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HBD Aura Moon ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Space+Grotesk:wght@300;500;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --card-dark: #0f0f0f;
+            --accent-pink: #ff2d75;
+            --accent-gold: #ffd700;
+            --aura-cyan: #00f2ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .glow-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% -20%, #2a101d 0%, #050505 60%);
+        }
+
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Floating Hearts/Gifts */
+        .floating-item {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header UI */
+        .bday-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .bday-tag {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff2d75, #9d4edd);
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(255, 45, 117, 0.4);
+            margin-bottom: 25px;
+        }
+
+        .name-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 12vw, 4.5rem);
+            font-weight: 800;
+            background: linear-gradient(to bottom, #fff 40%, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: -2px;
+        }
+
+        /* Cake Section */
+        .cake-area {
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cake {
+            position: relative;
+            width: 120px;
+            height: 70px;
+            background: #442c2e;
+            border-radius: 10px 10px 4px 4px;
+            box-shadow: 0 4px 0 #2a1a1b;
+        }
+
+        .cake::before {
+            content: "🎂";
+            position: absolute;
+            top: -45px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            filter: drop-shadow(0 0 10px var(--accent-pink));
+        }
+
+        /* Countdown */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 35px;
+        }
+
+        .unit-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 15px 5px;
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .val {
+            font-size: 1.6rem;
+            font-weight: 800;
+            font-family: 'Fugaz One', sans-serif;
+            color: var(--accent-gold);
+            display: block;
+        }
+
+        .lbl {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        /* Story Card */
+        .story-card {
+            background: var(--card-dark);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 24px;
+            line-height: 1.7;
+            color: #ddd;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::after {
+            content: '✨';
+            position: absolute;
+            bottom: 10px; right: 10px;
+            opacity: 0.2;
+            font-size: 2rem;
+        }
+
+        /* Flexyy Card (RESTORED & IMPROVED) */
+        .flexyy-card {
+            background: linear-gradient(145deg, rgba(255, 45, 117, 0.05), rgba(0, 0, 0, 0.5));
+            border: 1px solid rgba(255, 45, 117, 0.2);
+            padding: 20px;
+            border-radius: 20px;
+            width: 100%;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 65px; height: 65px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-pink);
+            padding: 3px;
+            object-fit: cover;
+        }
+
+        .flexyy-info h4 {
+            color: var(--accent-pink);
+            font-family: 'Fugaz One', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .flexyy-info p {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        /* Music Toggle */
+        .music-bar {
+            position: fixed;
+            bottom: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            padding: 12px 25px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .music-bar i { color: var(--accent-pink); font-size: 1.2rem; }
+
+        .traits {
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 30px;
+        }
+
+        .trait-pill {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--aura-cyan);
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="https://files.catbox.moe/di3h71.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="glow-bg"></div>
+    <div id="float-container"></div>
+
+    <div class="wrapper">
+        <div class="bday-header">
+            <div class="bday-tag">✨ Advanced Wishes ✨</div>
+            <h1 class="name-title">AURA<br>MOON</h1>
+        </div>
+
+        <div class="cake-area">
+            <div class="cake"></div>
+            <p style="color: var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px; font-weight: 700;">HAVE A BLAST! 🥳</p>
+        </div>
+
+        <div class="countdown-grid">
+            <div class="unit-card"><span class="val" id="d">00</span><span class="lbl">Days</span></div>
+            <div class="unit-card"><span class="val" id="h">00</span><span class="lbl">Hours</span></div>
+            <div class="unit-card"><span class="val" id="m">00</span><span class="lbl">Mins</span></div>
+            <div class="unit-card"><span class="val" id="s">00</span><span class="lbl">Secs</span></div>
+        </div>
+
+        <div class="story-card">
+            <h3 style="color: var(--accent-pink); margin-bottom: 10px;">Dear Aura,</h3>
+            <p>
+                When we first met on Telegram, I never thought that a simple conversation could
+                turn into something so genuinely nice. Talking to you always feels easy, natural,
+                and comforting in the best way.
+            </p>
+            <p style="margin-top: 10px;">
+                I wish you a birthday on June 6th that’s as warm and special as your personality.
+                May you always stay happy, peaceful, and keep shining quietly like the moon. ✨
+            </p>
+        </div>
+
+        <div class="traits">
+            <div class="trait-pill">💎 Best Find</div>
+            <div class="trait-pill">❤️ Pure Heart</div>
+            <div class="trait-pill">✨ Magic Soul</div>
+            <div class="trait-pill">🌙 Radiant</div>
+        </div>
+
+        <div class="flexyy-card">
+            <img src="https://files.catbox.moe/kti4jr.jpg" class="avatar" alt="Flexyy">
+            <div class="flexyy-info">
+                <h4>Flexyy</h4>
+                <p>Just Friend • Author !</p>
+                <p style="margin-top: 5px; color: white; font-style: italic;">Chal chal! Mena ye tera liye banaya… ab apna cute cute photo bhej, warna mai ghussa ho jaunga 😏😂</p>
+            </div>
+        </div>
+        
+             <div class="flexyy-card">
+            <img src="https://files.catbox.moe/33umw0.jpg" class="avatar" alt="Flexyy">
+            <div class="flexyy-info">
+                <h4>Altaf</h4>
+                <p> Memeber ! </p>
+                <p style="margin-top: 5px; color: white; font-style: italic;">I don’t know why, but in my eyes, you’re the most beautiful girl I’ve ever seen !!✨</p>
+            </div>
+        </div>
+        
+        <div class="flexyy-card">
+            <img src="https://files.catbox.moe/fv4oal.jpg" class="avatar" alt="Flexyy">
+            <div class="flexyy-info">
+                <h4>Unknown</h4>
+                <p> Memeber !</p>
+                <p style="margin-top: 5px; color: white; font-style: italic;">Bihari Ji Zara Limit Pe Sundar Dikha kijiye Mina Matlab Ka Pyaar Wagera Ho Jyega Phir Aap Badal Jaoge !!</p>
+            </div>
+        </div>
+
+        <div class="music-bar" id="music-toggle">
+            <i class="fas fa-heartbeat"></i>
+            <span style="font-size: 0.7rem; font-weight: 800; letter-spacing: 1px;">FEEL THE VIBE</span>
+        </div>
+
+        <p style="margin-top: 20px; color: #444; font-size: 0.6rem; letter-spacing: 4px;">AURA MOON SPECIAL</p>
+    </div>
+
+    <script>
+        const targetDate = new Date("June 6, 2026 00:00:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff > 0) {
+                document.getElementById('d').innerText = Math.floor(diff / 86400000).toString().padStart(2, '0');
+                document.getElementById('h').innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+                document.getElementById('m').innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+                document.getElementById('s').innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+            }
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        
+        musicBtn.onclick = () => {
+            if (music.paused) {
+                music.play();
+                musicBtn.querySelector('i').className = "fas fa-compact-disc fa-spin";
+            } else {
+                music.pause();
+                musicBtn.querySelector('i').className = "fas fa-heartbeat";
+            }
+        };
+
+        // Floating Celebration Elements (Hearts, Stars, Gifts)
+        const icons = ['❤️', '✨', '🎁', '🎂', '🌙'];
+        function createFloatingItem() {
+            const item = document.createElement('div');
+            item.className = 'floating-item';
+            item.innerText = icons[Math.floor(Math.random() * icons.length)];
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            item.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            document.getElementById('float-container').appendChild(item);
+            setTimeout(() => item.remove(), 8000);
+        }
+        setInterval(createFloatingItem, 600);
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>
